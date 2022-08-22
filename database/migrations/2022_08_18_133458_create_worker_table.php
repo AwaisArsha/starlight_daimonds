@@ -14,7 +14,13 @@ class CreateWorkerTable extends Migration
     public function up()
     {
         Schema::create('worker', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->length(11);
+            $table->string('name');
+            $table->string('aadhaar');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('email');
+            $table->string('file_url');
             $table->timestamps();
         });
     }

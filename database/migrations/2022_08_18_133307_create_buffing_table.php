@@ -14,7 +14,15 @@ class CreateBuffingTable extends Migration
     public function up()
     {
         Schema::create('buffing', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->length(11);
+            $table->string('order_no');
+            $table->string('gms_issued');
+            $table->date('date');
+            $table->string('weight');
+            $table->string('unique_id');
+            $table->bigInteger('worker_id');
+            $table->string('dust');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
