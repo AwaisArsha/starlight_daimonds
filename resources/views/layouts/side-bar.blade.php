@@ -30,7 +30,10 @@
                <li><a href="{{url('workers')}}"><i class="fa fa-user"></i> Workar</a></li>
                <li><a href="{{url('products')}}"><i class="fas fa-gem"></i> Products</a></li>
                <li><a href="{{url('customers')}}"><i class="fa fa-users"></i> Customers</a></li>
-               <li><a href="{{url('logout')}}"><i class="fas fa-power-off"></i>logout</a></li>
+               <li><a  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i>logout</a></li>
+               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
           </ul>
         </div>
   </nav>

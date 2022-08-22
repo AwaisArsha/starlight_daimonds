@@ -27,7 +27,7 @@ use App\Http\Controllers\CustomersController;
 
 Route::get('login',[AuthController::class, 'index'])->name('login');
 Route::post('login',[AuthController::class, 'Login'])->name('login');
-Route::get('logout',[AuthController::class, 'Logout'])->name('logout');
+Route::post('logout',[AuthController::class, 'Logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('dashboard',[DashboardController::class, 'index']);

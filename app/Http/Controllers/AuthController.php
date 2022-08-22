@@ -15,6 +15,11 @@ use Redirect;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('web')->except('logout');
+    }
+
     public function index()
     {
         $error_msg = isset($_REQUEST['error_msg'])?$_REQUEST['error_msg']:0;
@@ -52,6 +57,10 @@ class AuthController extends Controller
 
     public function Logout(Request $request)
     {
+
         Auth::guard('web')->logout();
+        Cookie::queue(Cookie::forget('XSRF-TOKEN'));
+        Cookie::queue(Cookie::forget('roomapp_session'));
+        return redirect()->route('login')->withCookie(Cookie::forget('sessionToken'));
     }
 }
