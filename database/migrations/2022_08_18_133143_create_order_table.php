@@ -26,6 +26,7 @@ class CreateOrderTable extends Migration
             $table->string('gr_approx');
             $table->boolean('status')->default(0);
             $table->string('comments');
+            $table->string('file_url');
             $table->timestamps();
         });
     }
