@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
-use App\Models\OrderModel;
+use App\Models\FillingModel;
+use App\Models\WorkerhModel;
 
 class FillingController extends Controller
 {
     public function fillingform(Request $request)
     {
-        return view('manufracture.filling.form');
+        $worker = WorkerhModel::withTrashed()->get();
+        return view('manufracture.filling.form',['worker'=>$worker]);
     }
 
     public function fillingupload(Request $request)

@@ -41,14 +41,20 @@ Route::middleware('auth')->group(function () {
     Route::get('fillingform',[FillingController::class, 'fillingform']);
 
     Route::get('buffinghistory',[BuffingController::class, 'buffinghistory']);
+    Route::get('buffingform',[BuffingController::class, 'buffingform']);
 
     Route::get('prepolish',[PrePolishController::class, 'prepolish']);
+    Route::get('prepolishform',[PrePolishController::class, 'prepolishform']);
 
     Route::get('setting',[SettindController::class, 'setting']);
+    Route::get('settingform',[SettindController::class, 'settingform']);
 
     Route::get('workers',[WorkersController::class, 'workers']);
+    Route::get('workerform',[WorkersController::class, 'workerform']);
 
     Route::get('products',[ProductsController::class, 'products']);
+    Route::get('productform',[ProductsController::class, 'productform']);
 
     Route::get('customers',[CustomersController::class, 'customers']);
+    Route::get('customerform',[CustomersController::class, 'customerform']);
 });
