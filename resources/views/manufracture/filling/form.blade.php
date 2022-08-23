@@ -55,10 +55,12 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="input_frm">
                                             <label>Worked By</label>
-                                            <select id="purity" name="purity" required>
-                                                <option value="18k">18k</option>
-                                                <option value="22k">22k</option>
-                                                <option value="14k">14k</option>
+                                            <select id="worker_id" name="worker_id" required>
+                                                @if($workers)
+                                                    @foreach($workers as $worker)
+                                                        <option value="{{$worker['id']}}" style="background-color: #000;border-radius: 5px;display: inline-block;" >{{UcFirst($worker['name'])}}</option>
+                                                    @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>

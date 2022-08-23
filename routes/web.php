@@ -9,7 +9,7 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\FillingController;
 use App\Http\Controllers\BuffingController;
 use App\Http\Controllers\PrePolishController;
-use App\Http\Controllers\SettindController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\WorkersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CustomersController;
@@ -39,22 +39,30 @@ Route::middleware('auth')->group(function () {
 
     Route::get('fillinghistory',[FillingController::class, 'fillinghistory']);
     Route::get('fillingform',[FillingController::class, 'fillingform']);
+    Route::post('fillingform',[FillingController::class, 'fillingupload']);
 
     Route::get('buffinghistory',[BuffingController::class, 'buffinghistory']);
     Route::get('buffingform',[BuffingController::class, 'buffingform']);
+    Route::post('buffingform',[BuffingController::class, 'buffingupload']);
 
     Route::get('prepolish',[PrePolishController::class, 'prepolish']);
     Route::get('prepolishform',[PrePolishController::class, 'prepolishform']);
+    Route::post('prepolishform',[PrePolishController::class, 'prepolishupload']);
 
-    Route::get('setting',[SettindController::class, 'setting']);
-    Route::get('settingform',[SettindController::class, 'settingform']);
+    Route::get('setting',[SettingsController::class, 'setting']);
+    Route::get('settingform',[SettingsController::class, 'settingform']);
+    Route::post('settingform',[SettingsController::class, 'settingupload']);
 
     Route::get('workers',[WorkersController::class, 'workers']);
     Route::get('workerform',[WorkersController::class, 'workerform']);
+    Route::post('workerform',[WorkersController::class, 'createworker']);
 
     Route::get('products',[ProductsController::class, 'products']);
     Route::get('productform',[ProductsController::class, 'productform']);
+    Route::post('productform',[ProductsController::class, 'createproduct']);
 
     Route::get('customers',[CustomersController::class, 'customers']);
     Route::get('customerform',[CustomersController::class, 'customerform']);
+    Route::post('customerform',[CustomersController::class, 'createcustomer']);
+
 });

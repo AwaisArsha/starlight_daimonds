@@ -20,15 +20,14 @@
                             <thead>
                               <tr>
                                 <th>Sl</th>
+                                <th>Date</th>
                                 <th>Order No</th>
                                 <th>Unique ID</th>
-                                <th>Date</th>
-                                <th>Client Name</th>
-                                <th>Product</th>
-                                <th>Size</th>
                                 <th>Karat</th>
-                                <th>Colour</th>
-                                <th>Total Gross Weight</th>
+                                <th>Gma Issued</th>
+                                <th>Received</th>
+                                <th>Wastage</th>
+                                <th>Worked BY</th>
                                 <th>Status</th>
                                 <th>Action</th>
                               </tr>
@@ -55,15 +54,14 @@
           ajax: "{{ url('fillinghistory') }}",
           columns: [
               {data: 'id', name: 'id'},
-              {data: 'id', name: 'id'},
+              {data: 'date', date: 'name'},
+              {data: 'order_no', name: 'order_no'},
               {data: 'unique_id', name: 'unique_id'},
-              {data: 'date', name: 'date'},
-              {data: 'client_name', name: 'client_name'},
-              {data: 'product_name', name: 'product_name'},
-              {data: 'size', name: 'size'},
-              {data: 'purity', name: 'purity'},
-              {data: 'metal_color', name: 'metal_color'},
-              {data: 'gross_weight', name: 'gross_weight'},
+              {data: 'karat', name: 'karat'},
+              {data: 'gms_issued', name: 'gms_issued'},
+              {data: 'received', name: 'received'},
+              {data: 'wastage', name: 'wastage'},
+              {data: 'worker', name: 'worker'},
               {data: 'status', name: 'status'},
               {data: 'action', name: 'action', orderable: false, searchable: false},
           ]

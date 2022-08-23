@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
 use App\Models\FillingModel;
-use App\Models\WorkerhModel;
+use App\Models\WorkerModel;
 
 class FillingController extends Controller
 {
     public function fillingform(Request $request)
     {
-        $worker = WorkerhModel::withTrashed()->get();
-        return view('manufracture.filling.form',['worker'=>$worker]);
+        $worker = WorkerModel::withTrashed()->get();
+        return view('manufracture.filling.form',['workers'=>$worker]);
     }
 
     public function fillingupload(Request $request)
@@ -25,27 +25,16 @@ class FillingController extends Controller
         $newformat = date('Y-m-d',$time);
 
         $input_arr  = array(
-            "client_name"=> $data["client_name"],
+            "order_no"=> $data["order_no"],
             "date"=> $newformat,
+            "gms_issued"=>$data["gms_issued"],
+            "weight"=>$data["weight"],
             "unique_id"=>$data["unique_id"],
-            "product_name"=>$data["product_name"],
-            "size"=>$data["size"],
-            "purity"=>$data["purity"],
-            "metal_color"=>$data["metal_color"],
-            "gross_weight"=>$data["gross_weight"],
-            "gr_approx"=>$data["gr_approx"],
+            "worker_id"=>$data["worker_id"],
+            "karat"=>$data["karat"],
             "status"=>$data["status"],
-            "comments"=>$data["comments"]
          );
 
-        if($request->hasFile('file-1')){
-            $file = $request->file('file-1')[0];
-            $file->store('img/');
-            $path =  public_path().'/storage/uploads/meal/';
-            $file_name= uniqid().'_'.$file->getClientOriginalName();
-            $file->move($path, $file_name);
-            $input_arr['file_url'] = $file_name;
-        }
         $inser_id = fillingModel::insertGetId($input_arr);
         if($inser_id)
         {
@@ -62,6 +51,16 @@ class FillingController extends Controller
             $data = FillingModel::withTrashed()->get();
             return Datatables::of($data)
                     ->addIndexColumn()
+                    ->addColumn('received', function ($row) {
+                        return '--';
+                    })
+                    ->addColumn('wastage', function ($row) {
+                        return '0';
+                    })
+                    ->addColumn('worker', function ($row) {
+                        $workername = WorkerModel::where('id', $row['worker_id'])->withTrashed()->first();
+                        return $workername['name'];
+                    })
                     ->addColumn('status', function ($row) {
                         return ($row['status'])?'Completed':'Opened';
                     })
